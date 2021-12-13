@@ -1,3 +1,3 @@
-export interface IHelloMessage{
-  msg:string
+export interface IHelloMessage {
+  msg: string;
 }
