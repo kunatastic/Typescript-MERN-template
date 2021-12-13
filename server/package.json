@@ -9,7 +9,8 @@
     "devStart": "nodemon src/index.ts",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
-    "start": "tsc -p . && node dist/index.js"
+    "start": "tsc -p . && node dist/index.js",
+    "prepare": "cd .. && husky install"
   },
   "keywords": [
     "template",
@@ -38,6 +39,7 @@
     "eslint": "^8.4.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.4",
     "nodemon": "^2.0.15",
     "prettier": "^2.5.1",
     "ts-node": "^10.4.0",
