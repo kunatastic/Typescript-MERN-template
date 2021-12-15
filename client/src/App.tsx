@@ -1,11 +1,10 @@
 import React from 'react';
-import './App.css';
-import { Main } from './pages';
+import AppRoutes from './AppRoutes';
 
 function App(): JSX.Element {
   return (
     <React.Fragment>
-      <Main />
+      <AppRoutes />
     </React.Fragment>
   );
 }
