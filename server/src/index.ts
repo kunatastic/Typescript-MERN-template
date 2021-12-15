@@ -22,6 +22,7 @@ moongoose.connect(process.env.DB_CONNECTION || 'mongodb://127.0.0.1:27017/templa
 );
 
 // Middlewares
+app.use(express.json());
 app.use(morgan('dev'));
 app.use(cors({ origin: ['http://localhost:3000', process.env.APP_BASE], credential: true }));
 app.use('/api', rootRouter);

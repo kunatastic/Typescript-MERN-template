@@ -1,5 +1,5 @@
 import express, { Router } from 'express';
-import AuthController from '../controllers/Auth.controllers';
+import * as AuthController from '../controllers/Auth.controllers';
 
 const router: Router = express.Router();
 
@@ -41,11 +41,11 @@ router.post('/register', AuthController.register);
 router.get('/logout', AuthController.logout);
 
 /**
- * @api {post} /api/auth/isSignIn
+ * @api {post} /api/auth/isLoggedIn
  * @description Check if user is signed in
  * @apiName IsSignIn
  * @apiGroup Auth
  */
-router.post('/isSignIn', AuthController.isSignIn);
+router.get('/isLoggedIn', AuthController.isLoggedIn);
 
 module.exports = router;
