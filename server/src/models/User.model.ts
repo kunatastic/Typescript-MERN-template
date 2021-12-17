@@ -7,31 +7,18 @@ const UserSchema = new Schema<IUser>(
       type: String,
       required: true,
       unique: true,
-      minlength: 5,
-      maxlength: 255,
       trim: true,
       lowercase: true,
-      validate: {
-        validator: (email: string) => {
-          // return email regex
-          const emailRegex = new RegExp('/^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$/');
-          return emailRegex.test(email);
-        },
-      },
     },
     username: {
       type: String,
       required: true,
-      minlength: 5,
-      maxlength: 255,
       trim: true,
       unique: true,
     },
     password: {
       type: String,
       required: true,
-      minlength: 5,
-      maxlength: 1024,
       trim: true,
     },
     role: {
