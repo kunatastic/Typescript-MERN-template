@@ -7,12 +7,12 @@ interface IAuthContext {
 }
 
 export const AuthContext = createContext<{
-  loggedIn: boolean;
+  loggedIn: boolean | undefined;
   getLoggedIn: () => Promise<void>;
-}>({ loggedIn: false, getLoggedIn: () => Promise.resolve() });
+} | null>(null);
 
 export const AuthContextProvider = ({ children }: IAuthContext): JSX.Element => {
-  const [loggedIn, setLoggedIn] = useState<boolean>(false);
+  const [loggedIn, setLoggedIn] = useState<boolean | undefined>(undefined);
 
   const getLoggedIn = async () => {
     const loggedIn = await getLoggedInStatus();

@@ -3,6 +3,8 @@ import { IHelloMessage, ILoggedInResponse, ISignInFormData, ISignUpFormData } fr
 
 const API_BASE = process.env.REACT_APP_API_BASE || 'http://localhost:5000';
 
+axios.defaults.withCredentials = true;
+
 /**
  *
  * @returns {Promise<IHelloMessage>}
@@ -76,4 +78,12 @@ export const postRegister = async (formData: ISignUpFormData): Promise<any> => {
       return axiosError.response?.data;
     }
   }
+};
+
+/**
+ *
+ */
+export const getLogout = async (): Promise<any> => {
+  const data = await axios.get(`${API_BASE}/auth/logout`);
+  return data.data;
 };

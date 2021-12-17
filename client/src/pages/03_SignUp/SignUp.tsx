@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { HeaderText, HeaderText2 } from '../../components';
 import { FaTwitter } from 'react-icons/fa';
 import { GrFacebookOption, GrInstagram } from 'react-icons/gr';
 import { postRegister } from '../../data/API';
+import { AuthContext } from '../../context/Auth.Context';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = (): JSX.Element => {
   const [formData, setFormdata] = useState({
@@ -11,11 +13,17 @@ const SignUp = (): JSX.Element => {
     username: 'test',
   });
   const [error, setError] = useState('');
+  const loginInfo = useContext(AuthContext);
+  const navigate = useNavigate();
 
   async function handleSignInSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const data = await postRegister(formData);
     if (data.status !== 200) setError(data.msg);
+    else {
+      loginInfo?.getLoggedIn();
+      navigate('/', { replace: true });
+    }
   }
 
   return (

@@ -5,13 +5,13 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import { AuthContext } from './context/Auth.Context';
 
 const AppRoutes = (): JSX.Element => {
-  const { loggedIn } = useContext(AuthContext);
+  const info = useContext(AuthContext);
   return (
     <Router>
       <Routes>
-        <Route path="/" element={loggedIn ? <Hero /> : <Main />} />
-        <Route path="/signin" element={loggedIn ? <Navigate replace to="/" /> : <SignIn />} />
-        <Route path="/signup" element={loggedIn ? <Navigate replace to="/" /> : <SignUp />} />
+        <Route path="/" element={info?.loggedIn ? <Hero /> : <Main />} />
+        <Route path="/signin" element={info?.loggedIn ? <Navigate replace to="/" /> : <SignIn />} />
+        <Route path="/signup" element={info?.loggedIn ? <Navigate replace to="/" /> : <SignUp />} />
         <Route path="/test" element={<Test />} />
         <Route path="/evilcat" element={<NotFound />} />
         <Route path="*" element={<Navigate replace to="/evilcat" />} />

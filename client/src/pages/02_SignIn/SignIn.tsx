@@ -1,17 +1,25 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { HeaderText } from '../../components';
 import { FaTwitter } from 'react-icons/fa';
 import { GrFacebookOption, GrInstagram } from 'react-icons/gr';
 import { postLogin } from '../../data/API';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../context/Auth.Context';
 
 const SignIn = (): JSX.Element => {
   const [formData, setFormdata] = useState({ email: 'test@gmail.com', password: 'test' });
   const [error, setError] = useState('');
+  const loginInfo = useContext(AuthContext);
+  const navigate = useNavigate();
 
   async function handleSignInSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const data = await postLogin(formData);
     if (data.status !== 200) setError(data.msg);
+    else {
+      loginInfo?.getLoggedIn();
+      navigate('/', { replace: true });
+    }
   }
 
   return (
